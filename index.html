@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Geográfica - Menú</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c59 50%, #6b9080 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: #fff;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(255,255,255,0.05) 1px, transparent 1px),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.05) 1px, transparent 1px),
+                radial-gradient(circle at 40% 40%, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 50px 50px, 30px 30px, 20px 20px;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+            padding: 25px;
+            border: 2px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 3em;
+            margin-bottom: 10px;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .title {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #a8e6cf, #ffd93d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .section {
+            background: rgba(0,0,0,0.4);
+            border-radius: 15px;
+            margin-bottom: 25px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #a8e6cf;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mobile-optimized {
+            touch-action: manipulation;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 20px 15px;
+            }
+            
+            .title {
+                font-size: 1.8em;
+            }
+            
+            .menu-item {
+                padding: 15px;
+            }
+            
+            .item-name {
+                font-size: 1.1em;
+            }
+            
+            .item-price {
+                font-size: 1.2em;
+            }
+            
+            .add-btn {
+                width: 100%;
+                padding: 12px;
+                margin-top: 15px;
+            }
+            
+            .cart {
+                bottom: 10px;
+                right: 10px;
+                padding: 12px 20px;
+            }
+        }
+
+        .menu-item {
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .menu-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .item-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #ffd93d;
+            flex: 1;
+        }
+
+        .item-price {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #a8e6cf;
+            margin-left: 15px;
+        }
+
+        .item-description {
+            font-size: 0.95em;
+            line-height: 1.5;
+            opacity: 0.9;
+            margin-top: 8px;
+        }
+
+        .add-btn {
+            background: linear-gradient(45deg, #4a7c59, #6b9080);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+
+        .add-btn:hover {
+            background: linear-gradient(45deg, #6b9080, #a8e6cf);
+            transform: scale(1.05);
+        }
+
+        .cart {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.8);
+            border-radius: 50px;
+            padding: 15px 25px;
+            border: 2px solid #a8e6cf;
+            backdrop-filter: blur(10px);
+            display: none;
+        }
+
+        .cart.show {
+            display: block;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .send-order {
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            color: #2d5016;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1em;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .send-order:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .cart-count {
+            background: #ff6b6b;
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .title {
+                font-size: 2em;
+            }
+            
+            .item-header {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .item-price {
+                margin-left: 0;
+                align-self: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container mobile-optimized">
+        <div class="header">
+            <div class="logo">🌍</div>
+            <div class="title">LA GEOGRÁFICA</div>
+            <div class="subtitle">Sabores mapeados con precisión</div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                🍔 PLATOS PRINCIPALES
+            </div>
+            
+            <div class="menu-item" onclick="addToCart('Hamburguesa Gisera', 15500)">
+                <div class="item-header">
+                    <div class="item-name">Hamburguesa Gisera con papas de Sizalla</div>
+                    <div class="item-price">$15.500</div>
+                </div>
+                <div class="item-description">
+                    Doble medallón de carne mapeado al punto, queso fundido como lava y salsa geoespacial secreta. Acompañada de papas de sizalla: corte irregular, sabor tectónico.
+                </div>
+                <button class="add-btn">Agregar al pedido</button>
+            </div>
+
+            <div class="menu-item" onclick="addToCart('Pollo Bufferizado', 13200)">
+                <div class="item-header">
+                    <div class="item-name">Pollo Bufferizado</div>
+                    <div class="item-price">$13.200</div>
+                </div>
+                <div class="item-description">
+                    Sándwich de pollo crocante al radio perfecto, con coleslaw vectorial y pan artesanal con bounding box. Ideal para zonas de influencia... del hambre.
+                </div>
+                <button class="add-btn">Agregar al pedido</button>
+            </div>
+
+            <div class="menu-item" onclick="addToCart('Veggie Raster Wrap', 11800)">
+                <div class="item-header">
+                    <div class="item-name">Veggie Raster Wrap</div>
+                    <div class="item-price">$11.800</div>
+                </div>
+                <div class="item-description">
+                    Wrap con vegetales grillados alineados en grilla regular, hummus de puntos calientes y aderezo NDVI de albahaca. Sin carne, pero con mucha resolución.
+                </div>
+                <button class="add-btn">Agregar al pedido</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                🥤 BEBIDAS
+            </div>
+            
+            <div class="menu-item" onclick="addToCart('Coca-Cola', 3900)">
+                <div class="item-header">
+                    <div class="item-name">Coca-Cola</div>
+                    <div class="item-price">$3.900</div>
+                </div>
+                <button class="add-btn">Agregar al pedido</button>
+            </div>
+
+            <div class="menu-item" onclick="addToCart('Sprite', 3900)">
+                <div class="item-header">
+                    <div class="item-name">Sprite</div>
+                    <div class="item-price">$3.900</div>
+                </div>
+                <button class="add-btn">Agregar al pedido</button>
+            </div>
+
+            <div class="menu-item" onclick="addToCart('Fanta', 3900)">
+                <div class="item-header">
+                    <div class="item-name">Fanta</div>
+                    <div class="item-price">$3.900</div>
+                </div>
+                <button class="add-btn">Agregar al pedido</button>
+            </div>
+
+            <div class="menu-item" onclick="addToCart('Agua mineral', 3400)">
+                <div class="item-header">
+                    <div class="item-name">Agua mineral</div>
+                    <div class="item-price">$3.400</div>
+                </div>
+                <button class="add-btn">Agregar al pedido</button>
+            </div>
+        </div>
+
+        <button class="send-order" onclick="sendOrder()">
+            🌍 ENVIAR PEDIDO GEOLOCALIZADO
+        </button>
+    </div>
+
+    <div class="cart" id="cart">
+        <span>🛒 Pedido: </span>
+        <span id="cart-count" class="cart-count">0</span>
+        <button onclick="clearCart()" style="background: #ff6b6b; color: white; border: none; border-radius: 15px; padding: 5px 10px; margin-left: 10px; cursor: pointer; font-size: 0.8em;">🗑️</button>
+    </div>
+
+    <script>
+        let cart = [];
+        let total = 0;
+
+        function addToCart(itemName, price) {
+            cart.push({name: itemName, price: price});
+            total += price;
+            updateCartDisplay();
+        }
+
+        function updateCartDisplay() {
+            const cartElement = document.getElementById('cart');
+            const cartCount = document.getElementById('cart-count');
+            
+            if (cart.length > 0) {
+                cartElement.classList.add('show');
+                cartCount.textContent = cart.length;
+            } else {
+                cartElement.classList.remove('show');
+            }
+        }
+
+        function clearCart() {
+            if (cart.length === 0) {
+                alert('🗺️ No hay nada que borrar, tu carrito ya está más limpio que mapa sin capas!');
+                return;
+            }
+            
+            if (confirm('🌍 ¿Seguro que querés resetear las coordenadas del pedido?')) {
+                cart = [];
+                total = 0;
+                updateCartDisplay();
+                alert('🧹 ¡Carrito limpiado con precisión cartográfica!');
+            }
+        }
+
+        function sendOrder() {
+            if (cart.length === 0) {
+                alert('🗺️ Tu carrito está más vacío que una proyección sin datos. ¡Agregá algo primero!');
+                return;
+            }
+
+            // Acá formateas el pedido para enviar a n8n
+            const orderData = {
+                items: cart,
+                total: total,
+                timestamp: new Date().toISOString(),
+                restaurant: 'La Geográfica'
+            };
+
+            // Esta URL la cambias por tu webhook de n8n
+            const webhookUrl = 'TU_WEBHOOK_DE_N8N_ACA';
+            
+            // Simulación del envío (comentá esto cuando tengas el webhook real)
+            console.log('Pedido a enviar:', orderData);
+            alert(`🌍 ¡Pedido enviado con coordenadas exactas!\n\nTotal: $${total.toLocaleString()}\nItems: ${cart.length}`);
+            
+            // Para cuando tengas n8n configurado, descomentá esto:
+            /*
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(orderData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('🌍 ¡Pedido enviado con coordenadas exactas!');
+                cart = [];
+                total = 0;
+                updateCartDisplay();
+            })
+            .catch(error => {
+                alert('❌ Error en la triangulación del pedido. Intentá de nuevo.');
+                console.error('Error:', error);
+            });
+            */
+            
+            // Reset cart después de enviar
+            cart = [];
+            total = 0;
+            updateCartDisplay();
+        }
+    </script>
+</body>
+</html>
