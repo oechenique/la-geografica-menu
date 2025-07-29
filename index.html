@@ -245,6 +245,82 @@
             box-shadow: 0 8px 25px rgba(0,0,0,0.3);
         }
 
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup {
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c59 50%, #6b9080 100%);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 400px;
+            width: 90%;
+            border: 2px solid rgba(255,255,255,0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .popup h3 {
+            color: #a8e6cf;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.5em;
+        }
+
+        .popup input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 10px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 1em;
+        }
+
+        .popup input::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .popup-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .popup-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .confirm-btn {
+            background: linear-gradient(45deg, #a8e6cf, #ffd93d);
+            color: #2d5016;
+        }
+
+        .cancel-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+
+        .popup-btn:hover {
+            transform: scale(1.05);
+        }
+
         .cart-count {
             background: #ff6b6b;
             color: white;
@@ -290,16 +366,16 @@
 
         <div class="section">
             <div class="section-title">
-                🍔 PLATOS PRINCIPALES
+                🍔 PLATOS
             </div>
             
             <div class="menu-item" onclick="addToCart('Hamburguesa Gisera', 15500)">
                 <div class="item-header">
-                    <div class="item-name">Hamburguesa Gisera con papas de Sizalla</div>
+                    <div class="item-name">Hamburguesa Gisera</div>
                     <div class="item-price">$15.500</div>
                 </div>
                 <div class="item-description">
-                    Doble medallón de carne mapeado al punto, queso fundido como lava y salsa geoespacial secreta. Acompañada de papas de sizalla: corte irregular, sabor tectónico.
+                    Doble medallón de carne mapeado al punto, queso fundido como lava y salsa geoespacial secreta.
                 </div>
                 <button class="add-btn">Agregar al pedido</button>
             </div>
@@ -322,6 +398,84 @@
                 </div>
                 <div class="item-description">
                     Wrap con vegetales grillados alineados en grilla regular, hummus de puntos calientes y aderezo NDVI de albahaca. Sin carne, pero con mucha resolución.
+                </div>
+                <button class="add-btn">Agregar al pedido</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                🥔 ACOMPAÑAMIENTOS
+            </div>
+            
+            <div class="menu-item" onclick="addToCart('Papas de Sizalla', 7500)">
+                <div class="item-header">
+                    <div class="item-name">Papas de Sizalla</div>
+                    <div class="item-price">$7.500</div>
+                </div>
+                <div class="item-description">
+                    Corte irregular con geometría aleatoria, sabor tectónico y crocancia de coordenadas exactas.
+                </div>
+                <button class="add-btn">Agregar al pedido</button>
+            </div>
+
+            <div class="menu-item" onclick="addToCart('Ensalada de Antípoda', 8200)">
+                <div class="item-header">
+                    <div class="item-name">Ensalada de Antípoda</div>
+                    <div class="item-price">$8.200</div>
+                </div>
+                <div class="item-description">
+                    Mix de verdes del hemisferio sur, tomates cherry georreferenciados y aderezo de meridiano cero.
+                </div>
+                <button class="add-btn">Agregar al pedido</button>
+            </div>
+
+            <div class="menu-item" onclick="addToCart('Aros de Cebolla Polares', 6800)">
+                <div class="item-header">
+                    <div class="item-name">Aros de Cebolla Polares</div>
+                    <div class="item-price">$6.800</div>
+                </div>
+                <div class="item-description">
+                    Círculos perfectos como los paralelos, crocantes como la tundra y calientes como el ecuador.
+                </div>
+                <button class="add-btn">Agregar al pedido</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                🍰 POSTGRE
+            </div>
+            
+            <div class="menu-item" onclick="addToCart('Volcán de Dulce Geodésico', 9200)">
+                <div class="item-header">
+                    <div class="item-name">Volcán de Dulce Geodésico</div>
+                    <div class="item-price">$9.200</div>
+                </div>
+                <div class="item-description">
+                    Erupción controlada de dulce de leche con núcleo fundido, acompañado de helado de coordenadas polares.
+                </div>
+                <button class="add-btn">Agregar al pedido</button>
+            </div>
+
+            <div class="menu-item" onclick="addToCart('Flan de Proyección Mercator', 7800)">
+                <div class="item-header">
+                    <div class="item-name">Flan de Proyección Mercator</div>
+                    <div class="item-price">$7.800</div>
+                </div>
+                <div class="item-description">
+                    Suave como los océanos, dulce como los trópicos, con caramelo que fluye como los ríos del mundo.
+                </div>
+                <button class="add-btn">Agregar al pedido</button>
+            </div>
+
+            <div class="menu-item" onclick="addToCart('Tiramisu de Capas Geológicas', 8900)">
+                <div class="item-header">
+                    <div class="item-name">Tiramisu de Capas Geológicas</div>
+                    <div class="item-price">$8.900</div>
+                </div>
+                <div class="item-description">
+                    Estratos de bizcocho, café de altitud y mascarpone sedimentario. Cada capa cuenta una era diferente.
                 </div>
                 <button class="add-btn">Agregar al pedido</button>
             </div>
@@ -376,6 +530,19 @@
         <button onclick="clearCart()" style="background: #ff6b6b; color: white; border: none; border-radius: 15px; padding: 5px 10px; margin-left: 10px; cursor: pointer; font-size: 0.8em;">🗑️</button>
     </div>
 
+    <!-- Popup para datos del cliente -->
+    <div class="popup-overlay" id="popup-overlay">
+        <div class="popup">
+            <h3>🌍 Datos de Entrega</h3>
+            <input type="text" id="customer-name" placeholder="Tu nombre" maxlength="50">
+            <input type="text" id="customer-address" placeholder="Dirección completa" maxlength="100">
+            <div class="popup-buttons">
+                <button class="popup-btn cancel-btn" onclick="closePopup()">Cancelar</button>
+                <button class="popup-btn confirm-btn" onclick="confirmOrder()">Enviar a Telegram</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         let cart = [];
         let total = 0;
@@ -417,48 +584,49 @@
                 alert('🗺️ Tu carrito está más vacío que una proyección sin datos. ¡Agregá algo primero!');
                 return;
             }
+            
+            // Mostrar popup para datos del cliente
+            document.getElementById('popup-overlay').style.display = 'flex';
+        }
 
-            // Acá formateas el pedido para enviar a n8n
-            const orderData = {
-                items: cart,
-                total: total,
-                timestamp: new Date().toISOString(),
-                restaurant: 'La Geográfica'
-            };
+        function closePopup() {
+            document.getElementById('popup-overlay').style.display = 'none';
+        }
 
-            // Esta URL la cambias por tu webhook de n8n
-            const webhookUrl = 'TU_WEBHOOK_DE_N8N_ACA';
+        function confirmOrder() {
+            const name = document.getElementById('customer-name').value.trim();
+            const address = document.getElementById('customer-address').value.trim();
             
-            // Simulación del envío (comentá esto cuando tengas el webhook real)
-            console.log('Pedido a enviar:', orderData);
-            alert(`🌍 ¡Pedido enviado con coordenadas exactas!\n\nTotal: $${total.toLocaleString()}\nItems: ${cart.length}`);
+            if (!name || !address) {
+                alert('🌍 Por favor completá tu nombre y dirección para geolocalizar el pedido');
+                return;
+            }
             
-            // Para cuando tengas n8n configurado, descomentá esto:
-            /*
-            fetch(webhookUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(orderData)
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert('🌍 ¡Pedido enviado con coordenadas exactas!');
-                cart = [];
-                total = 0;
-                updateCartDisplay();
-            })
-            .catch(error => {
-                alert('❌ Error en la triangulación del pedido. Intentá de nuevo.');
-                console.error('Error:', error);
-            });
-            */
+            // Crear el mensaje para Telegram
+            let itemsList = cart.map(item => `• ${item.name} - ${item.price.toLocaleString()}`).join('\n');
             
-            // Reset cart después de enviar
+            const telegramMessage = `Hola! Soy ${name}, quiero hacer un pedido de La Geográfica:
+
+${itemsList}
+
+Total: ${total.toLocaleString()}
+Dirección: ${address}
+
+¡Gracias!`;
+            
+            // REEMPLAZÁ ESTA URL POR TU LINK DE BOT DE TELEGRAM
+            const telegramBotUrl = `https://t.me/RutIAbot?start=${encodeURIComponent(telegramMessage)}`;
+            
+            // Abrir Telegram con el mensaje pre-armado
+            window.open(telegramBotUrl, '_blank');
+            
+            // Limpiar carrito y cerrar popup
             cart = [];
             total = 0;
             updateCartDisplay();
+            closePopup();
+            
+            alert('🌍 ¡Te llevamos a Telegram para confirmar tu pedido geolocalizado!');
         }
     </script>
 </body>
