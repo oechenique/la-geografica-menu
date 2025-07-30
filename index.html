@@ -149,7 +149,6 @@
             margin-bottom: 15px;
             border: 1px solid rgba(255,255,255,0.2);
             transition: all 0.3s ease;
-            cursor: pointer;
         }
 
         .menu-item:hover {
@@ -214,6 +213,7 @@
             border: 2px solid #a8e6cf;
             backdrop-filter: blur(10px);
             display: none;
+            z-index: 9999;
         }
 
         .cart.show {
@@ -369,7 +369,7 @@
                 🍔 PLATOS
             </div>
             
-            <div class="menu-item" onclick="addToCart('Hamburguesa Gisera', 15500)">
+            <div class="menu-item">
                 <div class="item-header">
                     <div class="item-name">Hamburguesa Gisera</div>
                     <div class="item-price">$15.500</div>
@@ -377,10 +377,10 @@
                 <div class="item-description">
                     Doble medallón de carne mapeado al punto, queso fundido como lava y salsa geoespacial secreta.
                 </div>
-                <button class="add-btn">Agregar al pedido</button>
+                <button class="add-btn" onclick="addToCart('Hamburguesa Gisera', 15500)">Agregar al pedido</button>
             </div>
 
-            <div class="menu-item" onclick="addToCart('Pollo Bufferizado', 13200)">
+            <div class="menu-item">
                 <div class="item-header">
                     <div class="item-name">Pollo Bufferizado</div>
                     <div class="item-price">$13.200</div>
@@ -388,10 +388,10 @@
                 <div class="item-description">
                     Sándwich de pollo crocante al radio perfecto, con coleslaw vectorial y pan artesanal con bounding box. Ideal para zonas de influencia... del hambre.
                 </div>
-                <button class="add-btn">Agregar al pedido</button>
+                <button class="add-btn" onclick="addToCart('Pollo Bufferizado', 13200)">Agregar al pedido</button>
             </div>
 
-            <div class="menu-item" onclick="addToCart('Veggie Raster Wrap', 11800)">
+            <div class="menu-item">
                 <div class="item-header">
                     <div class="item-name">Veggie Raster Wrap</div>
                     <div class="item-price">$11.800</div>
@@ -399,7 +399,7 @@
                 <div class="item-description">
                     Wrap con vegetales grillados alineados en grilla regular, hummus de puntos calientes y aderezo NDVI de albahaca. Sin carne, pero con mucha resolución.
                 </div>
-                <button class="add-btn">Agregar al pedido</button>
+                <button class="add-btn" onclick="addToCart('Veggie Raster Wrap', 11800)">Agregar al pedido</button>
             </div>
         </div>
 
@@ -408,7 +408,7 @@
                 🥔 ACOMPAÑAMIENTOS
             </div>
             
-            <div class="menu-item" onclick="addToCart('Papas de Sizalla', 7500)">
+            <div class="menu-item">
                 <div class="item-header">
                     <div class="item-name">Papas de Sizalla</div>
                     <div class="item-price">$7.500</div>
@@ -416,10 +416,10 @@
                 <div class="item-description">
                     Corte irregular con geometría aleatoria, sabor tectónico y crocancia de coordenadas exactas.
                 </div>
-                <button class="add-btn">Agregar al pedido</button>
+                <button class="add-btn" onclick="addToCart('Papas de Sizalla', 7500)">Agregar al pedido</button>
             </div>
 
-            <div class="menu-item" onclick="addToCart('Ensalada de Antípoda', 8200)">
+            <div class="menu-item">
                 <div class="item-header">
                     <div class="item-name">Ensalada de Antípoda</div>
                     <div class="item-price">$8.200</div>
@@ -427,10 +427,10 @@
                 <div class="item-description">
                     Mix de verdes del hemisferio sur, tomates cherry georreferenciados y aderezo de meridiano cero.
                 </div>
-                <button class="add-btn">Agregar al pedido</button>
+                <button class="add-btn" onclick="addToCart('Ensalada de Antípoda', 8200)">Agregar al pedido</button>
             </div>
 
-            <div class="menu-item" onclick="addToCart('Aros de Cebolla Polares', 6800)">
+            <div class="menu-item">
                 <div class="item-header">
                     <div class="item-name">Aros de Cebolla Polares</div>
                     <div class="item-price">$6.800</div>
@@ -438,7 +438,7 @@
                 <div class="item-description">
                     Círculos perfectos como los paralelos, crocantes como la tundra y calientes como el ecuador.
                 </div>
-                <button class="add-btn">Agregar al pedido</button>
+                <button class="add-btn" onclick="addToCart('Aros de Cebolla Polares', 6800)">Agregar al pedido</button>
             </div>
         </div>
 
@@ -447,36 +447,36 @@
                 🥤 BEBIDAS
             </div>
             
-            <div class="menu-item" onclick="addToCart('Coca-Cola', 3900)">
+            <div class="menu-item">
                 <div class="item-header">
                     <div class="item-name">Coca-Cola</div>
                     <div class="item-price">$3.900</div>
                 </div>
-                <button class="add-btn">Agregar al pedido</button>
+                <button class="add-btn" onclick="addToCart('Coca-Cola', 3900)">Agregar al pedido</button>
             </div>
 
-            <div class="menu-item" onclick="addToCart('Sprite', 3900)">
+            <div class="menu-item">
                 <div class="item-header">
                     <div class="item-name">Sprite</div>
                     <div class="item-price">$3.900</div>
                 </div>
-                <button class="add-btn">Agregar al pedido</button>
+                <button class="add-btn" onclick="addToCart('Sprite', 3900)">Agregar al pedido</button>
             </div>
 
-            <div class="menu-item" onclick="addToCart('Fanta', 3900)">
+            <div class="menu-item">
                 <div class="item-header">
                     <div class="item-name">Fanta</div>
                     <div class="item-price">$3.900</div>
                 </div>
-                <button class="add-btn">Agregar al pedido</button>
+                <button class="add-btn" onclick="addToCart('Fanta', 3900)">Agregar al pedido</button>
             </div>
 
-            <div class="menu-item" onclick="addToCart('Agua mineral', 3400)">
+            <div class="menu-item">
                 <div class="item-header">
                     <div class="item-name">Agua mineral</div>
                     <div class="item-price">$3.400</div>
                 </div>
-                <button class="add-btn">Agregar al pedido</button>
+                <button class="add-btn" onclick="addToCart('Agua mineral', 3400)">Agregar al pedido</button>
             </div>
         </div>
 
@@ -485,7 +485,7 @@
                 🍰 POSTGRE
             </div>
             
-            <div class="menu-item" onclick="addToCart('Volcán de Dulce Geodésico', 9200)">
+            <div class="menu-item">
                 <div class="item-header">
                     <div class="item-name">Volcán de Dulce Geodésico</div>
                     <div class="item-price">$9.200</div>
@@ -493,10 +493,10 @@
                 <div class="item-description">
                     Erupción controlada de dulce de leche con núcleo fundido, acompañado de helado de coordenadas polares.
                 </div>
-                <button class="add-btn">Agregar al pedido</button>
+                <button class="add-btn" onclick="addToCart('Volcán de Dulce Geodésico', 9200)">Agregar al pedido</button>
             </div>
 
-            <div class="menu-item" onclick="addToCart('Flan de Proyección Mercator', 7800)">
+            <div class="menu-item">
                 <div class="item-header">
                     <div class="item-name">Flan de Proyección Mercator</div>
                     <div class="item-price">$7.800</div>
@@ -504,10 +504,10 @@
                 <div class="item-description">
                     Suave como los océanos, dulce como los trópicos, con caramelo que fluye como los ríos del mundo.
                 </div>
-                <button class="add-btn">Agregar al pedido</button>
+                <button class="add-btn" onclick="addToCart('Flan de Proyección Mercator', 7800)">Agregar al pedido</button>
             </div>
 
-            <div class="menu-item" onclick="addToCart('Tiramisu de Capas Geológicas', 8900)">
+            <div class="menu-item">
                 <div class="item-header">
                     <div class="item-name">Tiramisu de Capas Geológicas</div>
                     <div class="item-price">$8.900</div>
@@ -515,7 +515,7 @@
                 <div class="item-description">
                     Estratos de bizcocho, café de altitud y mascarpone sedimentario. Cada capa cuenta una era diferente.
                 </div>
-                <button class="add-btn">Agregar al pedido</button>
+                <button class="add-btn" onclick="addToCart('Tiramisu de Capas Geológicas', 8900)">Agregar al pedido</button>
             </div>
         </div>
 
@@ -571,7 +571,7 @@
                 return;
             }
             
-            if (confirm('🌍 ¿Seguro que querés resetear las coordenadas del pedido?')) {
+            if (confirm('¿Seguro que querés resetear las coordenadas del pedido?')) {
                 cart = [];
                 total = 0;
                 updateCartDisplay();
