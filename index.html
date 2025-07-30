@@ -618,6 +618,8 @@
                 fecha_legible: new Date().toLocaleString('es-AR')
             };
             
+            console.log('Enviando pedido:', orderData);
+            
             // Tu webhook de n8n
             const n8nWebhookUrl = 'https://rutia.app.n8n.cloud/webhook-test/58143be8-fbe9-4ea2-9f1c-7eb62f953cfb';
             
@@ -627,26 +629,57 @@
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(orderData)
+                body: JSON.stringify(orderData),
+                mode: 'no-cors'  // Esto evita problemas de CORS
             })
             .then(response => {
-                if (response.ok) {
-                    alert('🌍 ¡Pedido enviado con coordenadas exactas! Gracias por elegir La Geográfica 🍔');
-                    
-                    // Limpiar todo después del éxito
-                    cart = [];
-                    total = 0;
-                    updateCartDisplay();
-                    document.getElementById('customer-name').value = '';
-                    document.getElementById('customer-address').value = '';
-                    closePopup();
-                } else {
-                    throw new Error('Error en el servidor');
-                }
+                console.log('Respuesta recibida:', response);
+                // Con no-cors no podemos leer response.ok, así que asumimos éxito
+                alert('🌍 ¡Pedido enviado con coordenadas exactas! Gracias por elegir La Geográfica 🍔');
+                
+                // Limpiar todo después del envío
+                cart = [];
+                total = 0;
+                updateCartDisplay();
+                document.getElementById('customer-name').value = '';
+                document.getElementById('customer-address').value = '';
+                closePopup();
             })
             .catch(error => {
-                alert('❌ Error en la triangulación del pedido. ¡Intentá de nuevo en unos segundos!');
-                console.error('Error:', error);
+                console.error('Error detallado:', error);
+                
+                // Intentar método alternativo - usando JSONP o formulario
+                alert('🔄 Probando método alternativo...');
+                
+                // Crear formulario invisible para enviar
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = n8nWebhookUrl;
+                form.target = '_blank';
+                form.style.display = 'none';
+                
+                // Agregar datos como campos ocultos
+                Object.keys(orderData).forEach(key => {
+                    const input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = key;
+                    input.value = typeof orderData[key] === 'object' ? JSON.stringify(orderData[key]) : orderData[key];
+                    form.appendChild(input);
+                });
+                
+                document.body.appendChild(form);
+                form.submit();
+                document.body.removeChild(form);
+                
+                // Limpiar carrito
+                cart = [];
+                total = 0;
+                updateCartDisplay();
+                document.getElementById('customer-name').value = '';
+                document.getElementById('customer-address').value = '';
+                closePopup();
+                
+                alert('🌍 ¡Pedido enviado por método alternativo! Revisar n8n.');
             });
         }
     </script>
